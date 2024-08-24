@@ -6,6 +6,7 @@ const PORT = 3000;
 const app = express();
 let data;
 
+// парсинг csv
 const parser = parse({
   columns: header =>
     header.map((column, i) => {
@@ -24,6 +25,16 @@ const parser = parse({
 
 fs.createReadStream(__dirname + '/data.csv').pipe(parser);
 
+//CORS-миддлвар
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:8085');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+
+  next();
+});
+
+// обработка запроса на полуение данных
 app.get('/', (req, res) => {
   const { offset = 0, limit = 10 } = req.query;
 
