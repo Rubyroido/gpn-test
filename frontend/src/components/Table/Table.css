@@ -1,0 +1,38 @@
+.Table {
+  table-layout: fixed;
+  width: 70%;
+  border-collapse: collapse;
+  border: 3px solid black;
+  font-size: 15px;
+}
+
+thead {
+  font-size: 20px;
+  border-bottom: 3px solid black;
+}
+
+thead th:nth-child(1) {
+  width: 15%;
+}
+
+thead th:nth-child(2) {
+  width: 15%;
+}
+
+thead th:nth-child(3) {
+  width: 20%;
+}
+
+thead th:nth-child(4) {
+  width: 15%;
+}
+
+thead th:nth-child(5) {
+  width: 35%;
+}
+
+th,
+td {
+  padding: 10px;
+  border: 1px solid black;
+}
