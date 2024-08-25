@@ -26,8 +26,16 @@ const parser = parse({
 fs.createReadStream(__dirname + '/data.csv').pipe(parser);
 
 //CORS-миддлвар
+const allowedCors = [
+  'http://127.0.0.1:8085',
+  'http://localhost:8085'
+]
+
 app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:8085');
+  const { origin } = req.headers;
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
 
